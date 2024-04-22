@@ -1,0 +1,11 @@
+#Why use activation function?
+To put it simply: 1. Add nonlinear factors 2. Fully combine features
+In a neural network, if no nonlinear transformation is performed on the output of the upper layer node, no matter how deep the network is, it is still a linear model. It can only linearly combine the inputs and then output, and cannot learn complex mapping relationships. In this case, The most primitive perceptron, the approximation ability of the network is quite limited, so it is necessary to use the activation function, a nonlinear function, for conversion, so that the expression ability of the deep neural network becomes more powerful (it is no longer a linear combination of inputs, but almost approximating any function).
+We know that the theoretical basis of deep learning is neural networks. In a single-layer neural network (Perceptron), the relationship between input and output calculation is as follows:
+![image](https://github.com/Dalen980512/dalen.github.io/assets/167549754/7b7a7409-8503-4dd6-a710-2acad415aeed)
+It can be seen that there is a linear relationship between input and output. After adding multiple neurons, the calculation formula is similar, as shown in the following figure:
+![image](https://github.com/Dalen980512/dalen.github.io/assets/167549754/82b0beed-3ce4-49e1-9da9-07a6a88709d7)
+This model can only process some simple linear data, while it is difficult to effectively process nonlinear data (it can also combine multiple different linear representations, but this is more complex and inflexible), as shown in the following figure:
+![image](https://github.com/Dalen980512/dalen.github.io/assets/167549754/ee09e44e-c981-4446-a990-6a5cb6c19315)
+Then, by adding a nonlinear excitation function to the neural network, it is possible for the neural network to learn a smooth curve to process nonlinear data.
+Therefore, the role of the excitation function in the neural network is generally Convert multiple linear inputs into nonlinear relations 。 If the excitation function is not used, each layer of the neural network only performs a linear transformation, even if the multi-layer input is superimposed, the transformation is still linear. After introducing nonlinear factors through the excitation function, the expression ability of the neural network is stronger.
