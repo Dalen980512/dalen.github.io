@@ -1,26 +1,46 @@
-# Deformable Convolution (DCN)
-## Why to propose DCN  
-
-We know that the purpose of convolution kernel is to extract the features of input objects. Our traditional convolution kernels are usually fixed size and fixed size ,for example, 3x3, 5x5, 7x7. The biggest problem of this convolution kernel is that it has poor adaptability to unknown changes and weak generalization ability. The convolution unit samples the input feature map at a fixed position; The pool layer continuously reduces the size of the feature map; RoI pooling layer produces RoI with limited space.  
-
-The size of receptive field of activation units in the same CNN layer is the same, which is not advisable for deep convolutional neural networks encoding position information, because different positions may correspond to objects with different scales or different deformations, and these layers need to be able to **Automatically adjust the scale or receptive field** Method. For another example, although the target detection effect is good, it depends on the bounding box based on feature extraction, which is not the optimal method, especially for non grid objects.  
+# Resnet
   
+## 1. Put forward reasons  
+
+**(1) Problems caused by stacked networks**  
+
+The traditional idea is that if we stack many layers, maybe we can make the network better.
+
+However, the reality is that it is difficult for the network to converge after stacking the network, and the gradient explosion ,gradient disappearance, impedes the convergence of the network at the beginning, making it difficult for the network to train and obtain appropriate parameters.
+
+**(2) Solve the degradation problem of deep network**
+
+Theoretically, by increasing the number of layers of the network, the network can perform more complex feature extraction and achieve better results. However, the experiment found that the deep network has degenerated, as shown in the following figure (photo source: Resnet&#39;s paper). As the depth of the network increases, the accuracy of the network becomes saturated, and then even drops rapidly. Moreover, this decline is not caused by over fitting, but because adding more layers to the appropriate depth model will lead to higher training errors, thus making it decline.
+
 <div align="center">
-  <img src="https://github.com/Dalen980512/dalen.github.io/assets/167549754/4f3d661f-6067-4561-95e2-315f54b0fe48" alt="Image" />
+  <img src="https://github.com/Dalen980512/dalen.github.io/assets/167549754/1a6f9855-811e-484b-b319-754c39075cac" alt="Image" />
 </div>
 
+## 2. Residual structure
+In order to solve the above two problems, residual structure came into being.
 
-​(a) Regular sampling grid of standard convolution -green dot. (b) Deformation sampling locations -dark blue dots with enhanced offsets -light blue arrows in deformable convolutions. (c) (d) is a special case of (b), which shows that deformable convolution extends various transformations of scale, anisotropy aspect ratio and rotation.  
-  
+The schematic diagram is as shown in the figure (picture source: Resnet&#39;s paper): its structure is very similar to the short circuit in the circuit, so it is called short circuit.
+
 <div align="center">
-  <img src="https://github.com/Dalen980512/dalen.github.io/assets/167549754/edd5091d-900e-4eb0-9791-5466c7e8581f" alt="Image"/>
+  <img src="https://github.com/Dalen980512/dalen.github.io/assets/167549754/e592b0e7-9c33-41e0-8e3a-efd436839a99" alt="Image" />
 </div>
 
-The fixed receptive field in standard convolution (a) and the adaptive receptive field in deformable convolution (b) are illustrated with two layers.  
-
-Top: Two active cells on the top feature map, located on two objects of different scales and shapes. Activate from 3 × 3 filter. Middle: the sampling position of the 3 × 3 filter on the front feature map. The other two active units are highlighted. Bottom: the sampling position of the two-stage 3 × 3 filter on the previous feature map.  
-
-**Deformable convolution can be closer to the shape and size of the object when sampling, while standard convolution cannot do this.**  
+## 3. Residual Structural analysis  
   
-Deformable convolution This kind of deformation does not occur in the convolution core, but occurs in the offset of the original image. After normal convolution, the effect of variable convolution is achieved, that is, normal convolution of feature offset.  
+Resnet structure hierarchy: Layer -- Block -- Stage -- Network
 
+(1) Layer is the smallest structure. ResNet-18 means that the network has 18 layers.
+
+(2) A block is formed by stacking two or three conv layers. Generally speaking, the double layer block on the left of the following figure is used below 50 layers, and the triple layer block on the right of the following figure is used above 50 layers. The block on the right is called BottleNeck (bottleneck structure).
+
+<div align="center">
+  <img src="https://github.com/Dalen980512/dalen.github.io/assets/167549754/626fdd33-ec5a-4a85-a2ee-8785477d21a6" alt="Image" />
+</div>
+
+(3) Stage is formed by stacking several blocks. As shown in the yellow circle ,composed of 3 blocks, below:  
+
+<div align="center">
+  <img src="https://github.com/Dalen980512/dalen.github.io/assets/167549754/143af57d-45e3-4745-a2c1-0a1bcce72bdc" alt="Image" />
+</div>
+  
+(4) Taking Resnet-50 as an example, as shown in the figure above, the network is composed of two layers ,conv7x7, maxpooling, and four stages ,48 layers in total, before the stage.
