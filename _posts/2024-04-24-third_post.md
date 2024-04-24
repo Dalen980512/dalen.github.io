@@ -4,7 +4,7 @@ This blog records the problems encountered in this assignment. There are three t
 
 ## 1. Fingerprint recognition 
 
-### Topic requirements.
+### Topic requirements
 
 You have been provided with a Jupyter notebook for fingerprint recognition available from https://github.com/lovellbrian/fingerprint . Design a GUI and template file/database which allows you to:
 
@@ -24,17 +24,21 @@ You can fetch additional prints from http://bias.csr.unibo.it/fvc2000/download.a
 
 I downloaded the data set from http://bias.csr.unibo.it/fvc2000/download.asp and selected DB1_B. The fingerprint after opening is as shown below, with the corresponding number. I don't quite understand the meaning of these numbers. Finally, I found on the official website that these fingerprints are 1xx_x.tif, where the number before '_' is the person's ID, and the number after '_' is the fingerprint ID corresponding to the person, that is to say, Each person corresponds to 8 fingerprints. From this perspective, I created a database that stores each person and their fingerprint information.
 
-![1713936472737](C:\Users\Luffy\AppData\Roaming\Typora\typora-user-images\1713936472737.png)
-
-​<center>Figure 1 DB1_B dataset</center>
-
-### Question 2. ROC curve:
+<div align="center">
+  <img src="https://github.com/Dalen980512/dalen.github.io/assets/167549754/a66e2ca2-861f-4887-a829-755ae6f1ec8e" alt="Image"/>
+  <br></br>
+  <span>Figure 1 DB1_B dataset</span>
+</div>  ​
+  
+###  Question 2. ROC curve:
 
 The ROC curve is a measure of a classification problem, so I need to convert the fingerprint recognition task into a classification problem. Applied to the above data set, my idea is to treat a person as a category, and the 8 fingerprints as instances in the category. This turns the recognition problem into a classification problem. In addition, the fingerprint recognition score can be used as the confidence score of classification. With this, I got the results of the classification and got the ROC curve.
 
-![1713936981273](C:\Users\Luffy\AppData\Roaming\Typora\typora-user-images\1713936981273.png)
-
-​															Figure 2 Classification result diagram
+<div align="center">
+  <img src="https://github.com/Dalen980512/dalen.github.io/assets/167549754/fcbf8f21-c22f-4a2b-b73d-d407c7ef88c8" alt="Image"/>
+  <br></br>
+  <span>Figure 2 Classification result diagram</span>
+</div> 
 
 ## 2. Training classification network and visualizing results
 
@@ -46,11 +50,11 @@ Write a Jupyter notebook to classify images with the same classes as the CIFAR10
 
 The t-SNE graph is a visualization method that compresses high-dimensional features onto a 2D graph. How to obtain the high-dimensional features of each sample is a difficult point. Thanks to the hook method in fastai, the output of a certain module of the model can be used to obtain the feature value in the form of a hook. From this, I used hooks to obtain the input features of the classification head as high-dimensional features of the t-SNE graph for the sample images in each verification set. After obtaining the high-dimensional features in this way, the label information corresponding to the sample is obtained to obtain the final t-SNE graph.
 
-
-
-![1713937472458](C:\Users\Luffy\AppData\Roaming\Typora\typora-user-images\1713937472458.png)
-
-Figure 3 t-SNE
+<div align="center">
+  <img src="https://github.com/Dalen980512/dalen.github.io/assets/167549754/520f01e7-32d6-4e99-9c11-1834d0a0b33a" alt="Image"/>
+  <br></br>
+  <span>Figure 3 t-SNE</span>
+</div> 
 
 ## 3. Comparison of GPU and CPU
 
