@@ -8,17 +8,17 @@ This blog records the problems encountered in this assignment. There are three t
 
 You have been provided with a Jupyter notebook for fingerprint recognition available from https://github.com/lovellbrian/fingerprint . Design a GUI and template file/database which allows you to:
 
-  -​ a. Enrol a fingerprint and associate a name. Store the template in a file or database
+- ​  Enrol a fingerprint and associate a name. Store the template in a file or database.  
+  
+- ​  Compare a new fingerprint to the fingerprints in the gallery.    
+  
+​- ​  Evaluate your system on a large number of fingerprints and adjust the threshold for good performance with low error rates.  
+  
+- ​  Produce a ROC curve showing error rates versus threshold.  
+  
+- ​  Estimate the false positive rate (false alarm rate) for a false negative rate of 1%.  
 
-​	b. Compare a new fingerprint to the fingerprints in the gallery
-
-​	c. Evaluate your system on a large number of fingerprints and adjust the threshold for good performance with low error rates
-
-​	d. Produce a ROC curve showing error rates versus threshold
-
-​	e. Estimate the false positive rate (false alarm rate) for a false negative rate of 1%.
-
-You can fetch additional prints from http://bias.csr.unibo.it/fvc2000/download.asp.
+You can fetch additional prints from http://bias.csr.unibo.it/fvc2000/download.asp.  
 
 ### Question 1. Use of datasets:
 
