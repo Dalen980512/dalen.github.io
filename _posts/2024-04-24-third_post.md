@@ -10,9 +10,9 @@ You have been provided with a Jupyter notebook for fingerprint recognition avail
 
 - ​  Enrol a fingerprint and associate a name. Store the template in a file or database.  
   
-- ​  Compare a new fingerprint to the fingerprints in the gallery.    
+- ​  Compare a new fingerprint to the fingerprints in the gallery.
   
-​- ​  Evaluate your system on a large number of fingerprints and adjust the threshold for good performance with low error rates.  
+-   Evaluate your system on a large number of fingerprints and adjust the threshold for good performance with low error rates.   
   
 - ​  Produce a ROC curve showing error rates versus threshold.  
   
@@ -26,9 +26,9 @@ I downloaded the data set from http://bias.csr.unibo.it/fvc2000/download.asp and
 
 ![1713936472737](C:\Users\Luffy\AppData\Roaming\Typora\typora-user-images\1713936472737.png)
 
-​													Figure 1 DB1_B dataset
+​<center>Figure 1 DB1_B dataset</center>
 
-### Question 2.ROC curve:
+### Question 2. ROC curve:
 
 The ROC curve is a measure of a classification problem, so I need to convert the fingerprint recognition task into a classification problem. Applied to the above data set, my idea is to treat a person as a category, and the 8 fingerprints as instances in the category. This turns the recognition problem into a classification problem. In addition, the fingerprint recognition score can be used as the confidence score of classification. With this, I got the results of the classification and got the ROC curve.
 
@@ -38,11 +38,11 @@ The ROC curve is a measure of a classification problem, so I need to convert the
 
 ## 2. Training classification network and visualizing results
 
-### Topic requirements.
+### Topic requirements
 
 Write a Jupyter notebook to classify images with the same classes as the CIFAR10 dataset (i.e., airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck). Use Duck Duck Go to scrape sample images off the Web based on the fast.ai course example on birds. Design an appropriate multiclass loss function or describe which one was used. Analyse your data and results using tools such as t-SNE and Confusion matrices. Report on metrics such as classification accuracy and explain the methods used.
 
-### Question 1.t-SNE
+### Question 1. t-SNE
 
 The t-SNE graph is a visualization method that compresses high-dimensional features onto a 2D graph. How to obtain the high-dimensional features of each sample is a difficult point. Thanks to the hook method in fastai, the output of a certain module of the model can be used to obtain the feature value in the form of a hook. From this, I used hooks to obtain the input features of the classification head as high-dimensional features of the t-SNE graph for the sample images in each verification set. After obtaining the high-dimensional features in this way, the label information corresponding to the sample is obtained to obtain the final t-SNE graph.
 
@@ -54,16 +54,16 @@ Figure 3 t-SNE
 
 ## 3. Comparison of GPU and CPU
 
-### Topic requirements.
+### Topic requirements
 
 This question is a brief exploration of running a Deep Learning notebook using a GPU or CPU. As far as I know, this is the first time this Development Container method has been used for teaching. It has taken me about 6 months to get this set up, so I hope you enjoy it. This task is mostly an exercise in getting your own devcontainer up and running on our 78-336 Lab machines and possibly also on your home machine or laptop. It is a hands-on exercise. Tutors will help you, so ask them for assistance. Get your machine set up for containers following my AI blog post at:https://lovellbrian.github.io/2023/10/02/BYODImage.html. Follow my blog instructions to first set up a CPU learning environment and then change this to a GPU deep learning environment running on Linux Ubuntu 22.04. Time the learning loop in the notebook using the CPU and you will find this often takes many minutes. Then we will try it using the GPU which will take seconds. For this exercise, figure out how to change the batch size in fastai. Google is your friend. The default value is 64.
 
-(a) Try batch size values of 16, 32, 64, 128, and 256 on the GPU and determine which is fastest.
+- ​  Try batch size values of 16, 32, 64, 128, and 256 on the GPU and determine which is fastest.
 
-(b) Determine the maximum speedup of the GPU over the CPU.
+- ​  Determine the maximum speedup of the GPU over the CPU.
 
-(c) Show graphs on GPU activity using nvtop as described in the blog. Explain what you observe and any issues you encountered.
+- ​  Show graphs on GPU activity using nvtop as described in the blog. Explain what you observe and any issues you encountered.
 
-### Question 1.CPU environment configuration
+### Question 1. CPU environment configuration
 
 Since fastai uses the GPU environment for experiments by default, when configuring the CPU environment, when running the original code directly, there will be some code base conflicts and errors. Specifically, changes to the original spaCy library caused compilation errors. Subsequent solution: Reinstalled the updated cpu container environment, used the test code again, success!
